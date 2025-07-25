@@ -1,0 +1,81 @@
+# ----------------------------
+# BACKEND (.NET / Visual Studio)
+# ----------------------------
+
+## User-specific files
+.vscode/
+*.user
+*.suo
+
+## Build results
+bin/
+obj/
+out/
+
+## NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+
+## Entity Framework Migrations (optional: only ignore if you don't want to track them)
+# Migrations/
+
+## Visual Studio
+.vs/
+*.csproj.user
+
+## Logs
+*.log
+
+## Secrets
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+## Database files
+*.mdf
+*.ldf
+
+# ----------------------------
+# FRONTEND (React + Vite)
+# ----------------------------
+
+## Node.js
+node_modules/
+dist/
+build/
+
+## Vite cache
+.vite/
+
+## Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+## Environment variables
+.env
+.env.*.local
+
+## OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+*.swp
+
+# ----------------------------
+# Git
+# ----------------------------
+
+# Ignore local git history backups
+*.orig
+*.rej
+
+# Ignore temporary merge files
+*.merge
+

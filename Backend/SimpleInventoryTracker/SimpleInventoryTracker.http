@@ -1,0 +1,6 @@
+@SimpleInventoryTracker_HostAddress = http://localhost:5227
+
+GET {{SimpleInventoryTracker_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
