@@ -52,13 +52,16 @@ namespace SimpleInventoryTracker.Controllers
         [HttpPatch("{id}/quantity")]
         public async Task<IActionResult> UpdateQuantity(int id, [FromBody] UpdateItemQuantityDto dto)
         {
-            var result = await _service.UpdateItemQuantityAsync(id, dto.Quantity);
+            var updatedItem = await _service.UpdateItemQuantityAsync(id, dto.Quantity);
 
-            if (!result.Success)
-                return BadRequest(result.Message);
+            if (updatedItem == null)
+            {
+                return BadRequest("Invalid item ID or quantity cannot be reduced below zero.");
+            }
 
-            return Ok(result.Message);
+            return Ok(updatedItem);
         }
+
 
         [HttpGet("lowstock")]
         public async Task<IActionResult> GetLowStockItems()
@@ -75,12 +78,7 @@ namespace SimpleInventoryTracker.Controllers
         }
 
 
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    var deleted = await _service.DeleteItemAsync(id);
-        //    return Ok("Deleted Successfully...!");
-        //}
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

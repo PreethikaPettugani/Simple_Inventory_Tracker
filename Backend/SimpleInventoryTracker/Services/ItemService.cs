@@ -26,7 +26,7 @@ namespace SimpleInventoryTracker.Services
                     ItemId = item.ItemId,
                     Name = item.Name,
                     Description = item.Description,
-                    Quantity = item.Quantity ,
+                    Quantity = item.Quantity,
                     Category = item.Category,
                     MinimumStockThreshold = item.MinimumStockThreshold,
                     IsLowStock = item.IsLowStock
@@ -43,7 +43,7 @@ namespace SimpleInventoryTracker.Services
                 ItemId = item.ItemId,
                 Name = item.Name,
                 Description = item.Description,
-                Quantity = item.Quantity ,
+                Quantity = item.Quantity,
                 Category = item.Category,
                 MinimumStockThreshold = item.MinimumStockThreshold,
                 IsLowStock = item.IsLowStock
@@ -85,20 +85,19 @@ namespace SimpleInventoryTracker.Services
             return await GetItemByIdAsync(item.ItemId);
         }
 
-        public async Task<(bool Success, string Message)> UpdateItemQuantityAsync(int id, int quantityChange)
+        public async Task<ItemDto?> UpdateItemQuantityAsync(int id, int quantityChange)
         {
             var item = await _context.Items.FindAsync(id);
-            if (item == null)
-                return (false, "Item not found.");
+            if (item == null) return null;
 
             int newQuantity = item.Quantity + quantityChange;
-            if (newQuantity < 0)
-                return (false, "Cannot reduce quantity below zero.");
+            if (newQuantity < 0) return null;
 
             item.Quantity = newQuantity;
+
             await _context.SaveChangesAsync();
 
-            return (true, "Quantity updated successfully.");
+            return await GetItemByIdAsync(item.ItemId);
         }
 
         public async Task<IEnumerable<ItemDto>> GetLowStockItemsAsync()

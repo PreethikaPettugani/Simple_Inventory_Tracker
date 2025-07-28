@@ -8,7 +8,7 @@ namespace SimpleInventoryTracker.Services.Interface
         Task<ItemDto?> GetItemByIdAsync(int id);
         Task<ItemDto> CreateItemAsync(CreateItemDto dto);
         Task<ItemDto?> UpdateItemAsync(int id, UpdateItemDto dto);
-        Task<(bool Success, string Message)> UpdateItemQuantityAsync(int id, int quantityChange);
+        Task<ItemDto?> UpdateItemQuantityAsync(int id, int quantityChange);
         Task<IEnumerable<ItemDto>> GetLowStockItemsAsync();
         Task<IEnumerable<ItemDto>> GetItemsByCategoryAsync(string category);
 

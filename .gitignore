@@ -33,6 +33,7 @@ project.fragment.lock.json
 ## Secrets
 appsettings.Development.json
 appsettings.Local.json
+appsettings.json
 secrets.json
 
 ## Database files
@@ -61,12 +62,6 @@ pnpm-debug.log*
 .env
 .env.*.local
 
-## OS / Editor
-.DS_Store
-Thumbs.db
-.idea/
-*.iml
-*.swp
 
 # ----------------------------
 # Git

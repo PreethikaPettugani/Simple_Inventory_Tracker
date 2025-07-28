@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="7603c29e-185c-414b-9842-88500eccd55f" name="Pettugani.Preethika@APH000298 2025-07-27 18:03:06" runUser="INT\Pettugani.Preethika" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-07-27T18:03:06.6198932+05:30" queuing="2025-07-27T18:03:06.6198940+05:30" start="2025-07-27T18:03:04.8889863+05:30" finish="2025-07-27T18:03:06.6250517+05:30" />
+  <TestSettings name="default" id="25e8e4c3-586e-4e96-9673-b449c8018f9e">
+    <Deployment runDeploymentRoot="Pettugani.Preethika_APH000298_2025-07-27_18_03_06" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="22408c2a-254f-48a5-9263-5ae5130960c7" testId="f53a8d2c-8d69-083b-6981-e2feefa0b1b6" testName="GetAllItemsAsync_ShouldReturnAllItems" computerName="APH000298" duration="00:00:00.4801825" startTime="2025-07-27T18:03:05.9412656+05:30" endTime="2025-07-27T18:03:06.4480893+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="22408c2a-254f-48a5-9263-5ae5130960c7" />
+    <UnitTestResult executionId="39834c0c-0531-47e4-9bdc-8f3759d2e73d" testId="1b0b7956-7088-1a6b-cc8b-3da20ac3455b" testName="UpdateItemQuantityAsync_ShouldUpdateOnlyQuantity" computerName="APH000298" duration="00:00:00.4804465" startTime="2025-07-27T18:03:05.9413137+05:30" endTime="2025-07-27T18:03:06.4488254+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="39834c0c-0531-47e4-9bdc-8f3759d2e73d" />
+    <UnitTestResult executionId="63cee31f-8e7e-413d-8741-0cb902e5ea28" testId="3a94966e-ffdc-930c-d95d-7407ed14c168" testName="GetItemsByCategoryAsync_ShouldReturnItemsInGivenCategory" computerName="APH000298" duration="00:00:00.4802907" startTime="2025-07-27T18:03:05.9414129+05:30" endTime="2025-07-27T18:03:06.4481474+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="63cee31f-8e7e-413d-8741-0cb902e5ea28" />
+    <UnitTestResult executionId="1322b2eb-51d0-4e59-8ca1-7f09e5768c7a" testId="0b774ebe-fa54-fea4-67d5-29505919374a" testName="DeleteItemAsync_ShouldReturnFalse_WhenItemDoesNotExist" computerName="APH000298" duration="00:00:00.4795337" startTime="2025-07-27T18:03:05.9416774+05:30" endTime="2025-07-27T18:03:06.4474248+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1322b2eb-51d0-4e59-8ca1-7f09e5768c7a" />
+    <UnitTestResult executionId="6d35537d-c405-4c25-9787-7bd3086dada1" testId="ed933060-923e-49ed-766d-d5d1e328b2dc" testName="GetLowStockItemsAsync_ReturnsOnlyLowStockItems" computerName="APH000298" duration="00:00:00.4801529" startTime="2025-07-27T18:03:05.9413203+05:30" endTime="2025-07-27T18:03:06.4480681+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6d35537d-c405-4c25-9787-7bd3086dada1" />
+    <UnitTestResult executionId="66d3a951-e0c2-4182-8040-29c1668cd462" testId="de592d50-04b7-b321-95e6-afb3d4dc33b1" testName="TestMethod1" computerName="APH000298" duration="00:00:00.0038611" startTime="2025-07-27T18:03:05.9420556+05:30" endTime="2025-07-27T18:03:05.9732884+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="66d3a951-e0c2-4182-8040-29c1668cd462" />
+    <UnitTestResult executionId="79088378-ebfa-40af-9222-7e15a065a306" testId="65b0c606-c794-09cc-131d-c54e7c0e2477" testName="UpdateItemAsync_ShouldUpdateItemDetails" computerName="APH000298" duration="00:00:00.3976760" startTime="2025-07-27T18:03:05.9412794+05:30" endTime="2025-07-27T18:03:06.3655914+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="79088378-ebfa-40af-9222-7e15a065a306" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="UpdateItemQuantityAsync_ShouldUpdateOnlyQuantity" storage="c:\users\pettugani.preethika\simple inventory tracker\backend\simpleinventorytracker.tests\bin\debug\net8.0\simpleinventorytracker.tests.dll" id="1b0b7956-7088-1a6b-cc8b-3da20ac3455b">
+      <Execution id="39834c0c-0531-47e4-9bdc-8f3759d2e73d" />
+      <TestMethod codeBase="C:\Users\Pettugani.Preethika\Simple Inventory Tracker\Backend\SimpleInventoryTracker.Tests\bin\Debug\net8.0\SimpleInventoryTracker.Tests.dll" adapterTypeName="executor://mstestadapter/v2" className="SimpleInventoryTracker.Tests.ItemServiceTests" name="UpdateItemQuantityAsync_ShouldUpdateOnlyQuantity" />
+    </UnitTest>
+    <UnitTest name="TestMethod1" storage="c:\users\pettugani.preethika\simple inventory tracker\backend\simpleinventorytracker.tests\bin\debug\net8.0\simpleinventorytracker.tests.dll" id="de592d50-04b7-b321-95e6-afb3d4dc33b1">
+      <Execution id="66d3a951-e0c2-4182-8040-29c1668cd462" />
+      <TestMethod codeBase="C:\Users\Pettugani.Preethika\Simple Inventory Tracker\Backend\SimpleInventoryTracker.Tests\bin\Debug\net8.0\SimpleInventoryTracker.Tests.dll" adapterTypeName="executor://mstestadapter/v2" className="SimpleInventoryTracker.Tests.Test1" name="TestMethod1" />
+    </UnitTest>
+    <UnitTest name="GetAllItemsAsync_ShouldReturnAllItems" storage="c:\users\pettugani.preethika\simple inventory tracker\backend\simpleinventorytracker.tests\bin\debug\net8.0\simpleinventorytracker.tests.dll" id="f53a8d2c-8d69-083b-6981-e2feefa0b1b6">
+      <Execution id="22408c2a-254f-48a5-9263-5ae5130960c7" />
+      <TestMethod codeBase="C:\Users\Pettugani.Preethika\Simple Inventory Tracker\Backend\SimpleInventoryTracker.Tests\bin\Debug\net8.0\SimpleInventoryTracker.Tests.dll" adapterTypeName="executor://mstestadapter/v2" className="SimpleInventoryTracker.Tests.ItemServiceTests" name="GetAllItemsAsync_ShouldReturnAllItems" />
+    </UnitTest>
+    <UnitTest name="DeleteItemAsync_ShouldReturnFalse_WhenItemDoesNotExist" storage="c:\users\pettugani.preethika\simple inventory tracker\backend\simpleinventorytracker.tests\bin\debug\net8.0\simpleinventorytracker.tests.dll" id="0b774ebe-fa54-fea4-67d5-29505919374a">
+      <Execution id="1322b2eb-51d0-4e59-8ca1-7f09e5768c7a" />
+      <TestMethod codeBase="C:\Users\Pettugani.Preethika\Simple Inventory Tracker\Backend\SimpleInventoryTracker.Tests\bin\Debug\net8.0\SimpleInventoryTracker.Tests.dll" adapterTypeName="executor://mstestadapter/v2" className="SimpleInventoryTracker.Tests.ItemServiceTests" name="DeleteItemAsync_ShouldReturnFalse_WhenItemDoesNotExist" />
+    </UnitTest>
+    <UnitTest name="GetItemsByCategoryAsync_ShouldReturnItemsInGivenCategory" storage="c:\users\pettugani.preethika\simple inventory tracker\backend\simpleinventorytracker.tests\bin\debug\net8.0\simpleinventorytracker.tests.dll" id="3a94966e-ffdc-930c-d95d-7407ed14c168">
+      <Execution id="63cee31f-8e7e-413d-8741-0cb902e5ea28" />
+      <TestMethod codeBase="C:\Users\Pettugani.Preethika\Simple Inventory Tracker\Backend\SimpleInventoryTracker.Tests\bin\Debug\net8.0\SimpleInventoryTracker.Tests.dll" adapterTypeName="executor://mstestadapter/v2" className="SimpleInventoryTracker.Tests.ItemServiceTests" name="GetItemsByCategoryAsync_ShouldReturnItemsInGivenCategory" />
+    </UnitTest>
+    <UnitTest name="GetLowStockItemsAsync_ReturnsOnlyLowStockItems" storage="c:\users\pettugani.preethika\simple inventory tracker\backend\simpleinventorytracker.tests\bin\debug\net8.0\simpleinventorytracker.tests.dll" id="ed933060-923e-49ed-766d-d5d1e328b2dc">
+      <Execution id="6d35537d-c405-4c25-9787-7bd3086dada1" />
+      <TestMethod codeBase="C:\Users\Pettugani.Preethika\Simple Inventory Tracker\Backend\SimpleInventoryTracker.Tests\bin\Debug\net8.0\SimpleInventoryTracker.Tests.dll" adapterTypeName="executor://mstestadapter/v2" className="SimpleInventoryTracker.Tests.ItemServiceTests" name="GetLowStockItemsAsync_ReturnsOnlyLowStockItems" />
+    </UnitTest>
+    <UnitTest name="UpdateItemAsync_ShouldUpdateItemDetails" storage="c:\users\pettugani.preethika\simple inventory tracker\backend\simpleinventorytracker.tests\bin\debug\net8.0\simpleinventorytracker.tests.dll" id="65b0c606-c794-09cc-131d-c54e7c0e2477">
+      <Execution id="79088378-ebfa-40af-9222-7e15a065a306" />
+      <TestMethod codeBase="C:\Users\Pettugani.Preethika\Simple Inventory Tracker\Backend\SimpleInventoryTracker.Tests\bin\Debug\net8.0\SimpleInventoryTracker.Tests.dll" adapterTypeName="executor://mstestadapter/v2" className="SimpleInventoryTracker.Tests.ItemServiceTests" name="UpdateItemAsync_ShouldUpdateItemDetails" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="f53a8d2c-8d69-083b-6981-e2feefa0b1b6" executionId="22408c2a-254f-48a5-9263-5ae5130960c7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1b0b7956-7088-1a6b-cc8b-3da20ac3455b" executionId="39834c0c-0531-47e4-9bdc-8f3759d2e73d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3a94966e-ffdc-930c-d95d-7407ed14c168" executionId="63cee31f-8e7e-413d-8741-0cb902e5ea28" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0b774ebe-fa54-fea4-67d5-29505919374a" executionId="1322b2eb-51d0-4e59-8ca1-7f09e5768c7a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ed933060-923e-49ed-766d-d5d1e328b2dc" executionId="6d35537d-c405-4c25-9787-7bd3086dada1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="de592d50-04b7-b321-95e6-afb3d4dc33b1" executionId="66d3a951-e0c2-4182-8040-29c1668cd462" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="65b0c606-c794-09cc-131d-c54e7c0e2477" executionId="79088378-ebfa-40af-9222-7e15a065a306" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="7" executed="7" passed="7" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>Test Parallelization enabled for C:\Users\Pettugani.Preethika\Simple Inventory Tracker\Backend\SimpleInventoryTracker.Tests\bin\Debug\net8.0\SimpleInventoryTracker.Tests.dll (Workers: 22, Scope: MethodLevel)&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>
