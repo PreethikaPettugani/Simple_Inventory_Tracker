@@ -1,177 +1,215 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using SimpleInventoryTracker.Controllers;
 using SimpleInventoryTracker.DTOs;
 using SimpleInventoryTracker.Services.Interface;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SimpleInventoryTracker.Tests.Controllers
 {
     [TestClass]
     public class ItemControllerTests
     {
-        private Mock<IItemService> _mockService;
+        private Mock<IItemService> _serviceMock;
         private ItemController _controller;
 
         [TestInitialize]
         public void Setup()
         {
-            _mockService = new Mock<IItemService>();
-            _controller = new ItemController(_mockService.Object);
+            _serviceMock = new Mock<IItemService>();
+            _controller = new ItemController(_serviceMock.Object);
         }
 
         [TestMethod]
-        public async Task GetAll_ShouldReturnOkWithItems()
+        public async Task GetAll_ReturnsOkWithItems()
         {
-            _mockService.Setup(s => s.GetAllItemsAsync())
-                .ReturnsAsync(new List<ItemDto> { new ItemDto { ItemId = 1, Name = "Test Item" } });
+            var mockItems = new List<ItemDto> { new ItemDto { ItemId = 1, Name = "Item1" } };
+            _serviceMock.Setup(s => s.GetAllItemsAsync()).ReturnsAsync(mockItems);
 
             var result = await _controller.GetAll();
 
             var okResult = result as OkObjectResult;
             Assert.IsNotNull(okResult);
             Assert.AreEqual(200, okResult.StatusCode);
+            Assert.AreEqual(mockItems, okResult.Value);
         }
+
         [TestMethod]
-        public async Task GetById_ShouldReturnItem_WhenExists()
+        public async Task GetById_ReturnsOk_WhenItemFound()
         {
-            _mockService.Setup(s => s.GetItemByIdAsync(1))
-                .ReturnsAsync(new ItemDto { ItemId = 1, Name = "Test Item" });
+            var item = new ItemDto { ItemId = 1, Name = "Test" };
+            _serviceMock.Setup(s => s.GetItemByIdAsync(1)).ReturnsAsync(item);
 
             var result = await _controller.GetById(1);
 
             var okResult = result as OkObjectResult;
             Assert.IsNotNull(okResult);
+            Assert.AreEqual(item, okResult.Value);
         }
-        [TestMethod]
-        public async Task GetById_ShouldReturnNotFound_WhenNotExists()
-        {
-            _mockService.Setup(s => s.GetItemByIdAsync(99)).ReturnsAsync((ItemDto?)null);
 
-            var result = await _controller.GetById(99);
+        [TestMethod]
+        public async Task GetById_ReturnsNotFound_WhenItemMissing()
+        {
+            _serviceMock.Setup(s => s.GetItemByIdAsync(2)).ReturnsAsync((ItemDto)null);
+
+            var result = await _controller.GetById(2);
 
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));
         }
+
         [TestMethod]
-        public async Task Create_ShouldReturnCreatedAtAction()
+        public async Task GetByName_ReturnsOk_WhenFound()
         {
-            var createDto = new CreateItemDto { Name = "New", Category = "Electronics", Quantity = 5, Description = "Test", MinimumStockThreshold = 1 };
-            var createdItem = new ItemDto { ItemId = 1, Name = "New", Category = "Electronics" };
+            var item = new ItemDto { ItemId = 1, Name = "Pen" };
+            _serviceMock.Setup(s => s.GetItemByNameAsync("Pen")).ReturnsAsync(item);
 
-            _mockService.Setup(s => s.CreateItemAsync(createDto)).ReturnsAsync(createdItem);
+            var result = await _controller.GetByName("Pen");
 
-            var result = await _controller.Create(createDto);
-
-            var createdResult = result as CreatedAtActionResult;
-            Assert.IsNotNull(createdResult);
-            Assert.AreEqual("GetById", createdResult.ActionName);
+            var ok = result as OkObjectResult;
+            Assert.IsNotNull(ok);
+            Assert.AreEqual(item, ok.Value);
         }
+
         [TestMethod]
-        public async Task Update_ShouldReturnOk_WhenItemExists()
+        public async Task GetByName_ReturnsContent_WhenNotFound()
         {
-            var updateDto = new UpdateItemDto { Name = "Updated", Description = "Updated", Quantity = 10, Category = "Electronics", MinimumStockThreshold = 2 };
+            _serviceMock.Setup(s => s.GetItemByNameAsync("Marker")).ReturnsAsync((ItemDto)null);
 
-            _mockService.Setup(s => s.UpdateItemAsync(1, updateDto)).ReturnsAsync(new ItemDto());
+            var result = await _controller.GetByName("Marker");
 
-            var result = await _controller.Update(1, updateDto);
-
-            var okResult = result as OkObjectResult;
-            Assert.IsNotNull(okResult);
+            Assert.IsInstanceOfType(result, typeof(ContentResult));
         }
+
         [TestMethod]
-        public async Task Update_ShouldReturnNotFound_WhenItemDoesNotExist()
+        public async Task Create_ReturnsCreatedAtAction()
         {
-            var dto = new UpdateItemDto();
-            _mockService.Setup(s => s.UpdateItemAsync(1, dto)).ReturnsAsync((ItemDto?)null);
+            var dto = new CreateItemDto { Name = "NewItem", Quantity = 5 };
+            var created = new ItemDto { ItemId = 2, Name = "NewItem", Quantity = 5 };
+
+            _serviceMock.Setup(s => s.CreateItemAsync(dto)).ReturnsAsync(created);
+
+            var result = await _controller.Create(dto);
+
+            var createdAt = result as CreatedAtActionResult;
+            Assert.IsNotNull(createdAt);
+            Assert.AreEqual("GetById", createdAt.ActionName);
+            Assert.AreEqual(created, createdAt.Value);
+        }
+
+        [TestMethod]
+        public async Task Update_ReturnsOk_WhenSuccess()
+        {
+            var dto = new UpdateItemDto { Name = "Updated", Quantity = 10 };
+            var updated = new ItemDto { ItemId = 1, Name = "Updated", Quantity = 10 };
+
+            _serviceMock.Setup(s => s.UpdateItemAsync(1, dto)).ReturnsAsync(updated);
 
             var result = await _controller.Update(1, dto);
 
+            var ok = result as OkObjectResult;
+            Assert.IsNotNull(ok);
+            Assert.AreEqual("Item Updated Sucessfully...!", ok.Value);
+        }
+
+        [TestMethod]
+        public async Task Update_ReturnsNotFound_WhenNull()
+        {
+            _serviceMock.Setup(s => s.UpdateItemAsync(99, It.IsAny<UpdateItemDto>())).ReturnsAsync((ItemDto)null);
+
+            var result = await _controller.Update(99, new UpdateItemDto());
+
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));
         }
+
         [TestMethod]
-        public async Task UpdateQuantity_ShouldReturnOk_WhenValid()
+        public async Task UpdateQuantity_ReturnsOk_WhenValid()
         {
-            // Arrange
-            var updatedItem = new ItemDto
-            {
-                ItemId = 1,
-                Name = "Laptop",
-                Description = "Dell i7",
-                Quantity = 15,
-                Category = "Electronics",
-                MinimumStockThreshold = 5,
-                IsLowStock = false
-            };
-            _mockService.Setup(s => s.UpdateItemQuantityAsync(1, 5))
-                        .ReturnsAsync(updatedItem);
+            var dto = new UpdateItemQuantityDto { Quantity = 3 };
+            var updated = new ItemDto { ItemId = 1, Quantity = 3 };
 
-            // Act
-            var result = await _controller.UpdateQuantity(1, new UpdateItemQuantityDto { Quantity = 5 });
+            _serviceMock.Setup(s => s.UpdateItemQuantityAsync(1, 3)).ReturnsAsync(updated);
 
-            // Assert
-            var okResult = result as OkObjectResult;
-            Assert.IsNotNull(okResult);
-            Assert.AreEqual(200, okResult.StatusCode);
-            Assert.AreEqual(updatedItem, okResult.Value);
+            var result = await _controller.UpdateQuantity(1, dto);
+
+            var ok = result as OkObjectResult;
+            Assert.IsNotNull(ok);
+            Assert.AreEqual(updated, ok.Value);
         }
+
         [TestMethod]
-        public async Task UpdateQuantity_ShouldReturnBadRequest_WhenInvalid()
+        public async Task UpdateQuantity_ReturnsBadRequest_WhenInvalid()
         {
-            // Arrange
-            _mockService.Setup(s => s.UpdateItemQuantityAsync(1, -100))
-                        .ReturnsAsync((ItemDto?)null);
+            _serviceMock.Setup(s => s.UpdateItemQuantityAsync(2, 5)).ReturnsAsync((ItemDto)null);
 
-            // Act
-            var result = await _controller.UpdateQuantity(1, new UpdateItemQuantityDto { Quantity = -100 });
+            var result = await _controller.UpdateQuantity(2, new UpdateItemQuantityDto { Quantity = 5 });
 
-            // Assert
-            var badRequest = result as BadRequestObjectResult;
-            Assert.IsNotNull(badRequest);
-            Assert.AreEqual(400, badRequest.StatusCode);
-            Assert.AreEqual("Invalid item ID or quantity cannot be reduced below zero.", badRequest.Value);
+            Assert.IsInstanceOfType(result, typeof(BadRequestObjectResult));
         }
+
         [TestMethod]
-        public async Task GetLowStockItems_ShouldReturnOk()
+        public async Task GetLowStockItems_ReturnsOk()
         {
-            _mockService.Setup(s => s.GetLowStockItemsAsync()).ReturnsAsync(new List<ItemDto>());
+            _serviceMock.Setup(s => s.GetLowStockItemsAsync()).ReturnsAsync(new List<ItemDto>());
 
             var result = await _controller.GetLowStockItems();
 
-            var ok = result as OkObjectResult;
-            Assert.IsNotNull(ok);
+            Assert.IsInstanceOfType(result, typeof(OkObjectResult));
         }
+
         [TestMethod]
-        public async Task GetItemsByCategory_ShouldReturnOk()
+        public async Task GetHighStockItems_ReturnsOk()
         {
-            _mockService.Setup(s => s.GetItemsByCategoryAsync("Electronics"))
-                .ReturnsAsync(new List<ItemDto> { new ItemDto { ItemId = 1, Category = "Electronics" } });
+            _serviceMock.Setup(s => s.GetHighStockItemsAsync()).ReturnsAsync(new List<ItemDto>());
 
-            var result = await _controller.GetItemsByCategory("Electronics");
+            var result = await _controller.GetHighStockItems();
 
-            var ok = result as OkObjectResult;
-            Assert.IsNotNull(ok);
+            Assert.IsInstanceOfType(result, typeof(OkObjectResult));
         }
+
         [TestMethod]
-        public async Task Delete_ShouldReturnOk_WhenDeleted()
+        public async Task GetItemsByCategory_ReturnsOk()
         {
-            _mockService.Setup(s => s.DeleteItemAsync(1)).ReturnsAsync(true);
+            _serviceMock.Setup(s => s.GetItemsByCategoryAsync("Stationery")).ReturnsAsync(new List<ItemDto>());
+
+            var result = await _controller.GetItemsByCategory("Stationery");
+
+            Assert.IsInstanceOfType(result, typeof(OkObjectResult));
+        }
+
+        [TestMethod]
+        public async Task GetAllCategories_ReturnsOk()
+        {
+            _serviceMock.Setup(s => s.GetAllCategoriesAsync()).ReturnsAsync(new List<string>());
+
+            var result = await _controller.GetAllCategories();
+
+            Assert.IsInstanceOfType(result, typeof(OkObjectResult));
+        }
+
+        [TestMethod]
+        public async Task Delete_ReturnsOk_WhenDeleted()
+        {
+            _serviceMock.Setup(s => s.DeleteItemAsync(1)).ReturnsAsync(true);
 
             var result = await _controller.Delete(1);
 
             var ok = result as OkObjectResult;
             Assert.IsNotNull(ok);
+            Assert.AreEqual("Item Deleted Successfully...!", ok.Value);
         }
-        [TestMethod]
-        public async Task Delete_ShouldReturnNotFound_WhenNotFound()
-        {
-            _mockService.Setup(s => s.DeleteItemAsync(99)).ReturnsAsync(false);
 
-            var result = await _controller.Delete(99);
+        [TestMethod]
+        public async Task Delete_ReturnsNotFound_WhenMissing()
+        {
+            _serviceMock.Setup(s => s.DeleteItemAsync(2)).ReturnsAsync(false);
+
+            var result = await _controller.Delete(2);
 
             Assert.IsInstanceOfType(result, typeof(NotFoundObjectResult));
         }
-
     }
 }
+
+

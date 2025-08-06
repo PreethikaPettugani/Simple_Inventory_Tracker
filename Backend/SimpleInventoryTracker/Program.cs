@@ -12,8 +12,6 @@ namespace SimpleInventoryTracker
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -23,6 +21,14 @@ namespace SimpleInventoryTracker
 
             builder.Services.AddScoped<IItemService, ItemService>();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    policy => policy.WithOrigins("https://localhost:5173") 
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader());
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -31,7 +37,7 @@ namespace SimpleInventoryTracker
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("AllowFrontend");
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();

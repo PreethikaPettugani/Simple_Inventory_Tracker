@@ -5,8 +5,6 @@ using SimpleInventoryTracker.Services.Interface;
 using System;
 using Microsoft.EntityFrameworkCore;
 
-
-
 namespace SimpleInventoryTracker.Services
 {
     public class ItemService : IItemService
@@ -50,6 +48,23 @@ namespace SimpleInventoryTracker.Services
             };
         }
 
+        public async Task<ItemDto?> GetItemByNameAsync(string name)
+        {
+            var item = await _context.Items.FirstOrDefaultAsync(i => i.Name == name);
+            if (item == null) return null;
+
+            return new ItemDto
+            {
+                ItemId = item.ItemId,
+                Name = item.Name,
+                Description = item.Description,
+                Quantity = item.Quantity,
+                Category = item.Category,
+                MinimumStockThreshold = item.MinimumStockThreshold,
+                IsLowStock = item.IsLowStock
+            };
+        }
+
         public async Task<ItemDto> CreateItemAsync(CreateItemDto dto)
         {
             var item = new Item
@@ -64,9 +79,7 @@ namespace SimpleInventoryTracker.Services
 
             _context.Items.Add(item);
             await _context.SaveChangesAsync();
-
             return await GetItemByIdAsync(item.ItemId);
-
         }
 
         public async Task<ItemDto?> UpdateItemAsync(int id, UpdateItemDto dto)
@@ -81,7 +94,6 @@ namespace SimpleInventoryTracker.Services
             item.MinimumStockThreshold = dto.MinimumStockThreshold;
 
             await _context.SaveChangesAsync();
-
             return await GetItemByIdAsync(item.ItemId);
         }
 
@@ -96,7 +108,6 @@ namespace SimpleInventoryTracker.Services
             item.Quantity = newQuantity;
 
             await _context.SaveChangesAsync();
-
             return await GetItemByIdAsync(item.ItemId);
         }
 
@@ -117,6 +128,24 @@ namespace SimpleInventoryTracker.Services
                 IsLowStock = item.IsLowStock
             });
         }
+        public async Task<IEnumerable<ItemDto>> GetHighStockItemsAsync()
+        {
+            var highStockItems = await _context.Items
+                .Where(item => item.Quantity > item.MinimumStockThreshold)
+                .ToListAsync();
+
+            return highStockItems.Select(item => new ItemDto
+            {
+                ItemId = item.ItemId,
+                Name = item.Name,
+                Quantity = item.Quantity,
+                Description = item.Description,
+                Category = item.Category,
+                MinimumStockThreshold = item.MinimumStockThreshold,
+                IsLowStock = item.IsLowStock
+            });
+        }
+
         public async Task<IEnumerable<ItemDto>> GetItemsByCategoryAsync(string category)
         {
             var query = _context.Items.AsQueryable();
@@ -138,6 +167,14 @@ namespace SimpleInventoryTracker.Services
                 MinimumStockThreshold = item.MinimumStockThreshold,
                 IsLowStock = item.IsLowStock
             });
+        }
+        public async Task<List<string>> GetAllCategoriesAsync()
+        {
+            return await _context.Items
+                .Select(item => item.Category)
+                .Where(category => !string.IsNullOrEmpty(category))
+                .Distinct()
+                .ToListAsync();
         }
 
         public async Task<bool> DeleteItemAsync(int id)

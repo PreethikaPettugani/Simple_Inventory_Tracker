@@ -33,6 +33,17 @@ namespace SimpleInventoryTracker.Controllers
             return Ok(item);
         }
 
+        [HttpGet("byname/{name}")]
+        public async Task<IActionResult> GetByName(string name)
+        {
+            var item = await _service.GetItemByNameAsync(name);
+            if (item == null)
+            {
+                return Content($"Item '{name}' not found"); 
+            }
+            return Ok(item); 
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(CreateItemDto dto)
         {
@@ -46,7 +57,7 @@ namespace SimpleInventoryTracker.Controllers
             var updated = await _service.UpdateItemAsync(id, dto);
             if (updated == null) return NotFound();
 
-            return Ok("Updated Sucessfully...!");
+            return Ok("Item Updated Sucessfully...!");
         }
 
         [HttpPatch("{id}/quantity")]
@@ -69,6 +80,12 @@ namespace SimpleInventoryTracker.Controllers
             var items = await _service.GetLowStockItemsAsync();
             return Ok(items);
         }
+        [HttpGet("highstock")]
+        public async Task<IActionResult> GetHighStockItems()
+        {
+            var items = await _service.GetHighStockItemsAsync();
+            return Ok(items);
+        }
 
         [HttpGet("category")]
         public async Task<IActionResult> GetItemsByCategory([FromQuery] string name)
@@ -77,8 +94,13 @@ namespace SimpleInventoryTracker.Controllers
             return Ok(items);
         }
 
+        [HttpGet("allCategories")]
+        public async Task<IActionResult> GetAllCategories()
+        {
+            var categories = await _service.GetAllCategoriesAsync();
+            return Ok(categories);
+        }
 
-        
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -87,7 +109,7 @@ namespace SimpleInventoryTracker.Controllers
             if (!deleted)
                 return NotFound($"Item with ID {id} not found.");
 
-            return Ok("Deleted Successfully...!");
+            return Ok("Item Deleted Successfully...!");
         }
 
     }
