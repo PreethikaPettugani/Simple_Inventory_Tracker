@@ -1,0 +1,28 @@
+.report-container {
+  padding: 30px;
+  background-color:lavender;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.report-container h2 {
+  color: darkviolet;
+  margin-bottom: 30px;
+}
+.report-heading{
+  font-size:30px;
+}
+.report-buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: rebeccapurple;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.report-buttons button:hover {
+  background-color: skyblue;
+}

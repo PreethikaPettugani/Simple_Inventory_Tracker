@@ -1,0 +1,132 @@
+.categories-container {
+  padding: 20px;
+}
+.categories-buttons {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.category-name{
+    color:darkviolet;
+    text-align: center;
+    font-size: 30px;
+}
+.category-button-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  
+}
+.category-button {
+  background-color: skyblue;
+  color: white;
+  border: none;
+  margin-top: 20px;
+}
+.category-button:hover {
+    background-color: blue;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.category-search-box {
+  flex: 1;
+}
+.search-button {
+  background-color: skyblue;
+  color: white;
+}
+.search-button:hover {
+    background-color: blue;
+}
+.category-item-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: flex-start;
+}
+
+.category-item-card {
+  background-color: lavender;
+  border: 1px solid purple;
+  border-radius: 10px;
+  padding: 15px 20px;
+  width: 260px;
+  box-shadow: 2px 2px 8px violet;
+  transition: transform 0.2s ease-in-out;
+}
+
+.category-item-card:hover {
+  transform: scale(1.02);
+  box-shadow: 2px 4px 12px purple;
+}
+
+.category-item-card p {
+  margin: 6px 0;
+}
+
+.category-action-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.category-edit-button {
+  background-color:grey;
+  color: white;
+  border-radius: 10px;
+  padding: 6px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.category-edit-button:hover {
+  background-color:lightgrey;
+}
+
+.category-delete-button {
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  padding: 6px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.category-delete-button:hover {
+  background-color: darkred;
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.pagination-button {
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: skyblue; 
+  color: white;
+  font-size: 16px;
+}
+
+.pagination-button.disabled {
+  background-color: lightgrey;
+  color: grey;
+  cursor: not-allowed;
+}
+
+.pagination-text {
+  font-size: 16px;
+  font-weight: bold;
+}

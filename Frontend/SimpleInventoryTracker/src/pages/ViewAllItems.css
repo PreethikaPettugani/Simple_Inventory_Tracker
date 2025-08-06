@@ -1,0 +1,137 @@
+.item-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+.item-card {
+  background-color: lavender;
+  border: 1px solid purple;
+  border-radius: 10px;
+  padding: 15px 20px;
+  width: 260px;
+  box-shadow: 2px 2px 8px violet;
+  transition: transform 0.2s ease-in-out;
+}
+.item-card:hover {
+  transform: scale(1.02);
+  box-shadow: 2px 4px 12px purple;
+}
+.item-card p {
+  margin: 6px 0;
+}
+.view-all-items-container {
+  padding: 10px;
+  background-color: white;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.view-all-items-title {
+  color: darkviolet;
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.search-bar .ms-TextField {
+  width: 850px;
+}
+.search-bar .ms-Button {
+  background-color: skyblue;
+  color: white;
+  font-weight: 500;
+  border-radius: 8px;
+}
+.search-bar .ms-Button:hover {
+  background-color: blue;
+}
+.ms-DetailsList {
+  background-color: white;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px lightgray;
+}
+.ms-Dialog-main {
+  background-color: lightgrey;
+  border-radius: 10px;
+   box-shadow:grey;
+}
+.ms-Dialog-title {
+  color: darkmagenta;
+}
+.ms-Dialog .ms-TextField {
+  margin-bottom: 10px;
+}
+.ms-Button--primary {
+  background-color: skyblue ;
+  border-radius: 6px ;
+}
+.ms-Button--primary:hover {
+  background-color: blue ;
+}
+.action-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.edit-button {
+  background-color: grey;
+  color: white;
+  border-radius: 10px;
+  padding: 6px 16px;
+  border: none;
+  cursor: pointer;
+}
+.edit-button:hover {
+  background-color: lightgrey;
+}
+.delete-button {
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  padding: 6px 16px;
+  border: none;
+  cursor: pointer;
+}
+.delete-button:hover {
+  background-color: darkred;
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 25px;
+  margin-bottom: 40px;
+}
+.pagination-controls button {
+  background-color: skyblue;
+  color: white;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+.pagination-controls button:hover:enabled {
+  background-color: blue;
+}
+.pagination-controls button:disabled {
+  background-color: lightgray;
+  color: #888;
+  cursor: not-allowed;
+}
+.ms-Dialog-subText {
+  color: darkslategray; 
+}
+
+
+
