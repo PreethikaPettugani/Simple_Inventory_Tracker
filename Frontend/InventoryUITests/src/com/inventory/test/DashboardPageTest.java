@@ -35,7 +35,7 @@ public class DashboardPageTest {
             // Add Item
             driver.findElement(By.xpath("//*[@id='root']/div/div[2]/div/div[1]/button[2]")).click();
             Thread.sleep(3000);
-            driver.findElement(By.id("add-item-id")).sendKeys("21");
+            driver.findElement(By.id("add-item-id")).sendKeys("30");
             Thread.sleep(2000);
             driver.findElement(By.id("add-item-name")).sendKeys("Test Item ");
             Thread.sleep(2000);
@@ -58,7 +58,7 @@ public class DashboardPageTest {
             quantityInput.click();
             quantityInput.sendKeys(Keys.CONTROL + "a");
             quantityInput.sendKeys(Keys.BACK_SPACE);
-            quantityInput.sendKeys("10");
+            quantityInput.sendKeys("20");
             Thread.sleep(2000);
             driver.findElement(By.id("edit-update-button")).click();
             Thread.sleep(2000);

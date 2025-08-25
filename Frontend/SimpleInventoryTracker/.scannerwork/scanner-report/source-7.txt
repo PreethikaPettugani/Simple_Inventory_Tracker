@@ -1,0 +1,36 @@
+.sidebar {
+  width: 250px;
+  background-color: thistle;
+  padding: 25px;
+}
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+.sidebar button {
+  width: 100%;
+  padding: 15px 15px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  margin-bottom: 10px;
+}
+.sidebar button:hover {
+  background-color: #d0d0ff;
+  color: black;
+}  
+
+.lowstock-badge {
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  vertical-align: middle;
+}
+

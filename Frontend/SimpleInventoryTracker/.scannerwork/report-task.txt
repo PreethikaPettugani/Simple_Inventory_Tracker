@@ -1,0 +1,6 @@
+projectKey=SimpleInventoryTracker-Frontend
+serverUrl=http://localhost:9000
+serverVersion=25.8.0.112029
+dashboardUrl=http://localhost:9000/dashboard?id=SimpleInventoryTracker-Frontend
+ceTaskId=4868f5b0-a385-4b59-96e0-ce11e7d4e9ca
+ceTaskUrl=http://localhost:9000/api/ce/task?id=4868f5b0-a385-4b59-96e0-ce11e7d4e9ca
